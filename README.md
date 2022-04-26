@@ -7,3 +7,5 @@ Innovations:
 - Added the purchase of mining farms, the place of writing 5 times of the same.
 - The Shop tab appeared, but only as an inscription.
 - Small fixes.
+
+#God #Speed
