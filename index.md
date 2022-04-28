@@ -1,6 +1,7 @@
-## This is a game, its version 0.0.8, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.0.8, I'm a novice developer, so don't judge too hard.
 
-Additional libraries are not required, on which versions it does not work. Innovations:
+> Additional libraries are not required, on which versions it does not work. 
+Innovations:
 
 - Added purchase of assets of all companies.
 - Added purchase of assets only once.
@@ -26,3 +27,5 @@ Additional libraries are not required, on which versions it does not work. Innov
 - Statistics
 - Level
 - Registration and Login
+
+[Mellogram](https://github.com/Mell-Anderson/Mellogram/archive/refs/tags/v0.0.8.zip)
