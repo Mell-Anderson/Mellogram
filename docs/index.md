@@ -13,17 +13,17 @@ Innovations:
 - There is mining
 - It is possible to run multiple farms
 - In the settings you can enter cheat codes
-- Most bugs fixed
-
-## Expected:
 - The Real Value of Bitcoin
 - Filled store
+- Most bugs fixed
 - Buying __not real__ prohibited items
-- Choosing a different cryptocurrency
 - Cryptocurrency exchanger for dollars
+- Settings update: added selection of ass with cache
+
+## Expected:
+- Choosing a different cryptocurrency
 - Credit debt
 - Barter or otherwise turn to another company for an increased amount of money
-- Linking the store to the time and, accordingly, the time of the game
 - Statistics
 - Level
 - Registration and Login
