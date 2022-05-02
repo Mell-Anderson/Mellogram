@@ -7,26 +7,27 @@ Innovations:
 - Added purchase of assets only once.
 - Added the purchase of mining farms, the place of writing 5 times of the same.
 - The Shop tab appeared, but only as an inscription.
-- Added admin panel (hidden)
-- Created registration (need to be finalized)
-- Interface added
-- There is mining
-- It is possible to run multiple farms
-- In the settings you can enter cheat codes
-- The Real Value of Bitcoin
-- Filled store
-- Most bugs fixed
-- Buying __not real__ prohibited items
-- Cryptocurrency exchanger for dollars
-- Settings update: added selection of ass with cache
+- Added admin panel (hidden).
+- Created registration (need to be finalized).
+- Interface added.
+- There is mining.
+- It is possible to run multiple farms.
+- In the settings you can enter cheat codes.
+- The Real Value of Bitcoin.
+- Filled store.
+- Most bugs fixed.
+- Buying __not real__ prohibited items.
+- Cryptocurrency exchanger for dollars.
+- Settings update: added selection of ass with cache.
+- Barter or otherwise turn to another company for an increased amount of money.
+- Item added to store __not real__.
 
 ## Expected:
 - Choosing a different cryptocurrency
 - Credit debt
-- Barter or otherwise turn to another company for an increased amount of money
 - Statistics
 - Level
-- Registration and Login
+- Save
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Mellogram)](https://github.com/Mell-Anderson/Mellogram/archive/refs/tags/v0.0.9.zip)
 
