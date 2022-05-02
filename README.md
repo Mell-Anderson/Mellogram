@@ -3,11 +3,12 @@ This is a game, its version 0.1.0, I'm a novice developer, so don't judge too ha
 Additional libraries are not required, on which versions it does not work.
 Innovations:
 
-- Updated settings
-- Removed some debris
-- Made bitcoin the currency
-- Made a store with exchange Bitcoins for Dollars
-- Created a bitcoin market, but so far _not a real_ ban
+- Added currency exchanger (beta)
+- Working on saving the game
+- Divided the currency
+- Created "barter"
+- Items added to the store
+- Inventory development in progress
 - Fix bugs
 
 #God #Speed
