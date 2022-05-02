@@ -23,6 +23,7 @@ Innovations:
 
 ## Expected:
 - Choosing a different cryptocurrency
+- Beta tester in the program
 - Credit debt
 - Statistics
 - Level
