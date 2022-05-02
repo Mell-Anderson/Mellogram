@@ -8,7 +8,6 @@ Innovations:
 - Added the purchase of mining farms, the place of writing 5 times of the same.
 - The Shop tab appeared, but only as an inscription.
 - Added admin panel (hidden).
-- Created registration (need to be finalized).
 - Interface added.
 - There is mining.
 - It is possible to run multiple farms.
