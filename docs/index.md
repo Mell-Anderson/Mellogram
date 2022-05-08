@@ -1,4 +1,4 @@
-# This is a game, its version 0.1.0, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.1.1, I'm a novice developer, so don't judge too hard.
 
 > Additional libraries are not required, on which versions it does not work. 
 Innovations:
@@ -30,6 +30,6 @@ Innovations:
 - Level
 - Save
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Mellogram)](https://github.com/Mell-Anderson/Mellogram/archive/refs/tags/v0.1.0.zip)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Mellogram)](https://github.com/Mell-Anderson/Mellogram/archive/refs/tags/v0.1.1.zip)
 
 <img src="6511c75e0597d02468b89ca9ce28dd71.gif" alt="что-то">
