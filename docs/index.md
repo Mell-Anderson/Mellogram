@@ -20,9 +20,10 @@ Innovations:
 - Settings update: added selection of ass with cache.
 - Barter or otherwise turn to another company for an increased amount of money.
 - Item added to store __not real__.
+- Added conversation.
 
 ## Expected:
-- Choosing a different cryptocurrency
+- Choice of other cryptocurrencies
 - Beta tester in the program
 - Credit debt
 - Statistics
