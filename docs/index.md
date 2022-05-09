@@ -1,4 +1,4 @@
-# This is a game, its version 0.1.1, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.1.2, I'm a novice developer, so don't judge too hard.
 
 > Additional libraries are not required, on which versions it does not work. 
 Innovations:
@@ -21,6 +21,7 @@ Innovations:
 - Barter or otherwise turn to another company for an increased amount of money.
 - Item added to store __not real__.
 - Added conversation.
+- Welcome
 
 ## Expected:
 - Choice of other cryptocurrencies
@@ -30,6 +31,6 @@ Innovations:
 - Level
 - Save
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Mellogram)](https://github.com/Mell-Anderson/Mellogram/archive/refs/tags/v0.1.1.zip)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Mellogram)](https://github.com/Mell-Anderson/Mellogram/archive/refs/tags/v0.1.2.zip)
 
 <img src="6511c75e0597d02468b89ca9ce28dd71.gif" alt="что-то">
