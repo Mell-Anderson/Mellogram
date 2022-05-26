@@ -598,3 +598,6 @@ code,pre{
 .social-icons .social-icon-youtube::before {
   background-image: url("image/icons8-youtube-play-144.png");
 }
+.social-icons .social-icon-youtube::before {
+  background-image: url("image/gmail.io.png");
+}
