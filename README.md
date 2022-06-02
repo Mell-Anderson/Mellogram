@@ -1,4 +1,4 @@
-This is a game, its version 0.1.6, I'm a novice developer, so don't judge too hard.
+This is a game, its version 0.1.7, I'm a novice developer, so don't judge too hard.
 
 Innovations:
 
