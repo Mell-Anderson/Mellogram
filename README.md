@@ -6,7 +6,7 @@ Innovations:
 - Fix bugs
 
 Launch and installation:
-
+```
  git clone https://github.com/Mell-Anderson/Mellogram/
 
  pip install loguru
@@ -14,5 +14,5 @@ Launch and installation:
  cd Mellogram
 
  python 'Mellogram v0.1.7.py'
-
+```
 #God #Speed
