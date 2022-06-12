@@ -1,11 +1,11 @@
-This is a game, its version 0.1.7, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.1.7, I'm a novice developer, so don't judge too hard.
 
-Innovations:
+### Innovations:
 
 - Added a small translation.
 - Fix bugs
 
-Launch and installation:
+### Launch and installation:
 ```
  git clone https://github.com/Mell-Anderson/Mellogram/
 
