@@ -5,8 +5,14 @@ Innovations:
 - Added a small translation.
 - Fix bugs
 
-Dependencies:
+Launch and installation:
 
-- pip install loguru
+ git clone https://github.com/Mell-Anderson/Mellogram/
+
+ pip install loguru
+
+ cd Mellogram
+
+ python 'Mellogram v0.1.7.py'
 
 #God #Speed
