@@ -9,8 +9,6 @@
 ```
  git clone https://github.com/Mell-Anderson/Mellogram/
 
- pip install loguru
-
  cd Mellogram
 
  python 'Mellogram v0.1.7.py'
