@@ -1,4 +1,3 @@
-#[{"name": "Mellogram"}{"version": "0.1.0 beta 5"}{"site": "https://mell-anderson.github.io/Mellogram/index-en.html"}]
 try:
     import unlink as un
 except ImportError:
@@ -8,15 +7,8 @@ try:
 except ImportError:
     datetime = None
 
-#from datetime import date
-#today = datetime.datetime.today()
-#today2 = today.strftime("%H:%M:%S")
-#storage = "/storage/emulated/0/"
-
 import config as con
-con.init() #создаем этот вызов один раз при создании программы
-
-
+con.init() 
 try: 
     import time
 except ImportError:
@@ -43,16 +35,16 @@ except ImportError:
     threading = None
 try:
     from loguru import logger
-except ImportError: 
+except ImportError:
     loguru = None
     
-loop = un.Language()
+loop = un.Language(con.language)
 
 @logger.catch
 def pop():
     while True:
         jojo()
-        print(loop.PrintLang('0000002'))
+        print(loop.PrintLang('02'))
         for i in "▇ ▆ ▅ ▄ ▃ ▂":
             time.sleep(0.3)
             sys.stdout.write(i)
@@ -84,15 +76,15 @@ def jojo():
 def ast(sos):
     #Apple
     if sos == 1:
-        con.nip -= MoneyApple
+        con.nip -= con.MoneyApple
         con.bn = 5
         con.n = float(0.00000004)
     elif sos == 2:
-        con.nip -= MoneySumsung
+        con.nip -= con.MoneySumsung
         con.bn = 3
         con.n = float(0.00000007)
     elif sos == 3:
-        con.nip -= MoneyMicrosoft
+        con.nip -= con.MoneyMicrosoft
         con.bn = 1
         con.n = float(0.00000012)
     elif sos == 4:
@@ -107,16 +99,16 @@ def ast(sos):
 @logger.catch
 def setting():
     global loop
-    kodin = input(loop.PrintLang('0000001'))
+    kodin = input(loop.PrintLang('1')).lower()
     if "/kode " in kodin:
         non0 = kodin.replace("/kode ", "")
         match non0:
-            case "God":
+            case "god":
                 con.kod = "God"
                 ast(4)
                 jojo()
                 setting()
-            case "Speed":
+            case "speed":
                 con.kod = "Speed"
                 ast(5)
                 jojo()
@@ -156,10 +148,10 @@ def setting():
 
 @logger.catch
 def Shop():
-    print(loop.PrintLang('0000003'))
+    print(loop.PrintLang('3'))
     while True:
         try:
-            mnb = input(loop.PrintLang("0000004")) #Product selection
+            mnb = input(loop.PrintLang("4")).lower() #Product selection
             break
         except ValueError:
             jojo()
@@ -169,7 +161,7 @@ def Shop():
             killop()
             while True:
                 try:
-                    jkp = str(input(loop.PrintLang("0000005"))) #Choice of buying and selling
+                    jkp = str(input(loop.PrintLang("5"))) #Choice of buying and selling
                     break
                 except ValueError:
                     jojo()
@@ -177,7 +169,7 @@ def Shop():
     elif mnb == "1" and jkp == "Buy":
         while True:
             try:
-                con.QuantityBuy = int(input("Select Quantity: "))
+                con.QuantityBuy = int(input(loop.PrintLang('6'))).lower()
                 break
             except ValueError:
                 jojo()
@@ -189,41 +181,41 @@ def Shop():
             con.nMon -= int(con.MachineBuy) * int(con.QuantityBuy)
             con.InventoryQuantityMachine += con.QuantityBuy
             jojo()
-            dog = input("Added a new item to your inventory\n⋗ ")
+            dog = input(loop.PrintLang('7'))
             jojo()
             Shop()
         else:
-            print("You do not have enough money or you do not have the necessary material in storage")
+            print(loop.PrintLang('8'))
             dog = input("⋗ ")
             jojo()
             Shop()
     elif mnb == "1" and jkp == "Sell":
         while True:
             try:
-                con.QuantitySell = input("Select Quantity: ")
+                con.QuantitySell = input(loop.PrintLang('6')).lower()
                 break
             except ValueError:
                 jojo()
                 Shop()
         if int(con.InventoryQuantityMachine) >= int(con.QuantitySell) and con.QuantityBuy < con.Machine:
             con.Machine += int(con.QuantitySell)
-            Machine2 = int(con.Machine)
+            con.Machine2 = int(con.Machine)
             con.nMon += int(con.MachineBuy) * int(con.QuantityBuy)
             con.InventoryQuantityMachine -= con.QuantityBuy
             jojo()
-            dog = input("You were able to sell the goods, congratulations!\n⋗ ")
+            dog = input(loop.PrintLang('9'))
             jojo()
             Shop()
         else:
             jojo()
-            dog = input("You do not have Machine in inventory \n⋗ ")
+            dog = input(loop.PrintLang('10'))
             jojo()
             Shop()
     #Passport
     if mnb ==  "2" and jkp == "Buy":
         while True:
             try:
-                con.QuantityBuy = int(input("Select Quantity: "))
+                con.QuantityBuy = int(input(loop.PrintLang('06')))
                 break
             except ValueError:
                 jojo()
@@ -231,39 +223,39 @@ def Shop():
          #Request for the number of things to buy
         if con.Passport > 0 and con.nMon >= con.PassportBuy and con.QuantityBuy < con.Passport:
             con.Passport -= int(con.QuantityBuy)
-            Passport2 = int(con.Passport)
+            con.Passport2 = int(con.Passport)
             con.nMon -= int(con.PassportBuy) * int(con.QuantityBuy)
             con.InventoryQuantityPassport += con.QuantityBuy
             jojo()
-            dog = input("Added a new item to your inventory\n⋗ ")
+            dog = input(loop.PrintLang('07'))
             jojo()
             Shop()
         else:
             jojo()
-            print("You do not have enough money or you do not have the necessary material in storage")
+            print(loop.PrintLang('08'))
             dog = input("⋗ ")
             jojo()
             Shop()
     elif mnb == "2" and jkp == "Sell":
         while True:
             try:
-                con.QuantitySell = input("Select Quantity: ")
+                con.QuantitySell = input(loop.PrintLang('07'))
                 break
             except ValueError:
                 jojo()
                 Shop()
         if int(con.InventoryQuantityPassport) >= int(con.QuantitySell):
             con.Passport += int(con.QuantitySell)
-            Passport2 = int(con.Passport)
+            con.Passport2 = int(con.Passport)
             con.nMon += int(con.PassportSell) * int(con.QuantitySell)
             con.InventoryQuantityPassport -= con.QuantitySell
             jojo()
-            dog = input("You were able to sell the goods, congratulations!")
+            dog = input(loop.PrintLang('09'))
             jojo()
             Shop()
         else:
             jojo()
-            dog = input("You do not have Passport in inventory \n⋗ ")
+            dog = input(loop.PrintLang('11'))
             jojo()
             Shop()
     else:
@@ -287,13 +279,13 @@ def background():
 
 @logger.catch
 def Inventory():
-    dog = input(f"We have prepared information about your equipment for you, keep. \nMachine: {con.InventoryQuantityMachine}\n\nPassport: {con.InventoryQuantityPassport}\n⋗ ")
+    dog = input(loop.PrintLang('13'))
     killop()
 
 @logger.catch
 def main():
     jojo()
-    print("\nHello, well, I think you know me, but that doesn't stop us from talking \n[ 1 ] - Start a new game \n[ 2 ] - Continue what you started \n[ 3 ] - Settings \n[ 4 ] - Exit")
+    print(loop.PrintLang('12'))
     while True:
         try:
             answer = input("⋗ ")
@@ -327,7 +319,7 @@ def main():
 @logger.catch
 def killop():
     jojo()
-    print("Hello, mountain, today we will mine. \n[ 1 ] Mine - start mining \n[ 2 ] Video card - buying upgrades \n[ 3 ] County - collected money \n[ 4 ] Underground - crypto details \n[ 5 ] Bartter - available temporary work")
+    print(loop.PrintLang('14'))
     mone()
 
 @logger.catch
@@ -335,7 +327,7 @@ def underground():
     global bitcoinSell2, bitcoinBuy2
     while True:
         try:
-            vin = input("Here you can choose the desired currency, exchange or sell it. \n[ 1 ] Exchanger \n[ 2 ] Exchange Rates \n[ 3 ] Buying a ban\n[ 4 ] Inventory \n[ 5 ] exit \n⋗ ")
+            vin = input(loop.PrintLang('15'))
             break
         except ValueError:
             jojo()
@@ -346,7 +338,7 @@ def underground():
             underground()
         case "2":
             jojo()
-            bot = input(f"Bitcoin: \nBuy: 100$ = {bitcoinBuy2}\n\nSell: 100$ = {bitcoinSell2}\n\n[Buy or Sell]\n⋗ ")
+            bot = input(loop.PrintLang('16'))
             match bot:
                 case "Buy":
                     if con.nMon >= 100:
@@ -356,7 +348,7 @@ def underground():
                         underground()
                     else:
                         jojo()
-                        dog = input("We did not find the required amount in your account \n⋗ ")
+                        dog = input(loop.PrintLang('17'))
                         jojo()
                         underground()
                 case "Sell":
@@ -367,21 +359,21 @@ def underground():
                         underground()
                     else:
                         jojo()
-                        dog = input("We did not find the required amount in your account \n⋗ ")
+                        dog = input(loop.PrintLang('17'))
                         jojo()
                         underground()
                 case _:
                     jojo()
-                    dog = input("Please enter buy or sell next time\n⋗ ")
+                    dog = input()
                     jojo()
                     underground()
-        case "3":
+        case "5":
             jojo()
             Shop()
         case "4":
             jojo()
             Inventory()
-        case "5":
+        case "3":
             jojo()
             killop()
         case _:
@@ -532,7 +524,7 @@ def bartter():
 def mone():
     while True:
         try:
-            popi = str(input("⋗ "))
+            popi = str(input("⋗ ")).lower()
             break
         except ValueError:
             jojo()
@@ -542,7 +534,7 @@ def mone():
             jojo()
             while True:
                 try:
-                    popg = int(input("How many farms do you want to run?(1/20) \n⋗ "))
+                    popg = int(input("How many farms do you want to run?(1/20) \n⋗ ")).lower()
                     break
                 except ValueError:
                     jojo()
@@ -550,7 +542,7 @@ def mone():
             #Farm
             mineMoney = float(0.00000001)
             if popg in range(21):
-                con.nip += mineMoney*popg
+                con.nip +=  (mineMoney*popg)
                 con.bn = con.bn*popg
                 str(un.tim(con.bn))*popg
                 con.bn = con.bn/popg
@@ -558,7 +550,7 @@ def mone():
             else:
                 jojo()
                 killop()
-                nip2 = toFixed(con.nip, 8)
+                con.nip2 = toFixed(con.nip, 8)
                 print(f'Bitcoin: {con.nip2}')
                 time.sleep(1)
                 jojo()
@@ -593,13 +585,12 @@ def mone():
 @logger.catch
 def hopy():
     try:
-        bit = input("Exit? \n[ Yes ] [ No ] \n⋗ ")
+        bit = input("Exit? \n[ Yes ] [ No ] \n⋗ ").lower()
     except ValueError:
         jojo()
         hopy()
     if bit in con.ANS:
         quit()
-        logger.add("file_{time}.log")
     else:
         jojo()
         main()
