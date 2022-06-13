@@ -1,8 +1,9 @@
-# This is a game, its version 0.1.7, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.1.8, I'm a novice developer, so don't judge too hard.
 
 ### Innovations:
 
 - Added a small translation.
+- Added buttons
 - Fix bugs
 
 ### Launch and installation:
