@@ -14,6 +14,6 @@
 
  python -m pip install -r requirements.txt 
 
- python 'Mellogram v0.1.7.py'
+ python Mellogram
 ```
 #God #Speed
