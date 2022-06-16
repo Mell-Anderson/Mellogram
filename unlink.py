@@ -20,83 +20,30 @@ class Language:
             match message_id:
                 case '1':
                     return (f'\nKode: {con.kod}\nLanguage: en\n> ')
-                case '2':
-                    return langEN[message_id]
                 case '3':
                     return f"I declare a fight for goods, I wish you good luck in a bargain. \nTo exit you need to write 3 \n[1]AK-47 ({con.Machine2}/50) \n[Buy: {con.MachineBuy}$] \n[Sell: {con.MachineSell}$]\n\n[2]Passport ({con.Passport2}/200) \n[Buy: {con.PassportBuy}$] \n[Sell: {con.PassportSell}$]\n"
-                case '4':
-                    return langEN[message_id]
-                case '5':
-                    return langEN[message_id]
-                case '6':
-                    return langEN[message_id]
-                case '7':
-                    return langEN[message_id]
-                case '8':
-                    return langEN[message_id]
-                case '9':
-                    return langEN[message_id]
-                case '10':
-                    return langEN[message_id]
-                case '11':
-                    return langEN[message_id]
-                case '12':
-                    return langEN[message_id]
                 case '13':
                     return f'We have prepared information about your equipment for you, keep. \nMachineAK-47: {con.InventoryQuantityMachine}\n\nPassport: {con.InventoryQuantityPassport}\n⋗ '
-                case '14':
-                    return langEN[message_id]
-                case '15':
-                    return langEN[message_id]
                 case '16':
                     return f'Bitcoin: \nBuy: 100$ = {con.bitcoinBuy2}\n\nSell: 100$ = {con.bitcoinSell2}\n\n[Buy or Sell]\n⋗ ' 
-                case '17':
-                    return langEN[message_id]
-                case '18':
+                case _:
                     return langEN[message_id]
         while self.language == "ru":
             match message_id:
                 case '1':
                     return (f'\nКод: {con.kod}\nЯзык: ru\n> ')
-                case '2':
-                    return langRU[message_id]
                 case '3':
                     return f"За товар объявляю бой, желаю удачи в торге.\nДля выхода нужно написать 3.\n[1]AK-47 ({con.Machine2}/50)[Купить: {con.MachineBuy}$] \n[Продать: {con.MachineSell}$]\n\n[2]Паспорты ({con.Passport2}/200) \n[Купить: {con.PassportBuy}$] \n[Продать: {con.PassportSell}$]"
-                case '4':
-                    return langRU[message_id]
-                case '5':
-                    return langRU[message_id]
-                case '6':
-                    return langRU[message_id]
-                case '7':
-                    return langRU[message_id]
-                case '8':
-                    return langRU[message_id]
-                case '9':
-                    return langRU[message_id]
-                case '10':
-                    return langRU[message_id]
-                case '11':
-                    return langRU[message_id]
-                case '12':
-                    return langRU[message_id]
                 case '13':
                     return f'Мы подготовили для вас информацию о вашем оборудовании, сохраняйте. \nAK-47: {con.InventoryQuantityMachine}\n\nПаспортов: {con.InventoryQuantityPassport}\n⋗ '
-                case '14':
-                    return langRU[message_id]
-                case '15':
-                    return langRU[message_id]
                 case '16':
                     return f'Биткоин: \nКупить: 100$ = {bitcoinBuy2}\n\nПродать: 100$ = {bitcoinSell2}\n\n[Купить или Продать]\n⋗ ' 
-                case '17':
-                    return langRU[message_id]
-                case '18':
+                case _:
                     return langRU[message_id]
         else:
             pass
 
 langEN = {
-    '2': 'Loading ...', 
     '4': 'Select Item: ', 
     '5': 'Buy or Sell: ',
     '6': 'Select Quantity: ',
@@ -113,7 +60,6 @@ langEN = {
 }
 
 langRU = {
-    '2': 'Загрузка ...', 
     '4': 'Выбрать предмет: ', 
     '5': 'Купить или Продать: ',
     '6': 'Выберите количество: ',

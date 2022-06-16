@@ -7,49 +7,54 @@ except ImportError:
 try:
     import unlink as un
 except ImportError:
-    unlink = None
+    raise FileError("Game system file not found: unlink.py")
 try: 
     import datetime
 except ImportError:
-    datetime = None
-
-import config as con
+    raise ImportError('datetime - Not found')
+    
+try:
+    import config as con
+except ImportError:
+    raise FileError("Game system file not found: config.py")
 con.init() 
 try: 
     import time
 except ImportError:
-    time = None
+    raise ImportError('time - Not found')
 try: 
-    import t
-    tempfile = None
+    import tempfile
+except ImportError:
+    raise ImportError('tempfile - Not found')
 try: 
     import os
 except ImportError: 
-    os = None
+    raise ImportError('os - Not found')
 try: 
     import sys
 except ImportError: 
-    sys = None
+    raise ImportError('sys - Not found')
 try: 
     import socket
 except ImportError: 
-    socket = None
+    raise ImportError('socket - Not found')
 try: 
     import threading
 except ImportError: 
-    threading = None
+    raise ImportError('threading - Not found')
 try:
     from loguru import logger
 except ImportError:
-    loguru = None
+    raise ImportError('loguru - Not found')
     
 loop = un.Language(con.language)
 
+"""
 @logger.catch
 def pop():
     while True:
         jojo()
-        print(loop.PrintLang('02'))
+        print('loading... ')
         for i in "▇ ▆ ▅ ▄ ▃ ▂":
             time.sleep(0.3)
             sys.stdout.write(i)
@@ -58,7 +63,7 @@ def pop():
         jojo()
     else: 
         main()
-"""
+
 @logger.catch
 def is_connected():
     try:
@@ -601,8 +606,8 @@ def hopy():
         main()
 
 if __name__ == "__main__":
-    with alive_bar(606, ctrl_c=False, title=f'Loading... ') as bar:
-        for i in range(606):
+    with alive_bar(613, ctrl_c=False, title=f'Loading... ') as bar:
+        for i in range(613):
             time.sleep(0.02)
             bar()
     main()
