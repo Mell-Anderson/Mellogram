@@ -5,6 +5,7 @@
 - Added a small translation.
 - Added buttons
 - Fix bugs
+- Loading...
 
 ### Launch and installation:
 ```

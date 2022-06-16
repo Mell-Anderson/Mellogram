@@ -1,3 +1,6 @@
+from alive_progress.styles import showtime
+from alive_progress import alive_it
+from alive_progress import alive_bar
 try:
     import unlink as un
 except ImportError:
@@ -53,7 +56,7 @@ def pop():
         jojo()
     else: 
         main()
-
+"""
 @logger.catch
 def is_connected():
     try:
@@ -61,7 +64,7 @@ def is_connected():
         background()
     except socket.gaierror:
         pop()
-
+"""
 @logger.catch
 def toFixed(numObj, digits=0):
     return f"{numObj:.{digits}f}"
@@ -596,4 +599,8 @@ def hopy():
         main()
 
 if __name__ == "__main__":
-    is_connected()
+    with alive_bar(606, ctrl_c=False, title=f'Loading... ') as bar:
+        for i in range(606):
+            time.sleep(0.02)
+            bar()
+    main()
