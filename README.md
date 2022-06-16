@@ -4,8 +4,8 @@
 
 - Added a small translation.
 - Added buttons
-- Fix bugs
 - Loading...
+- Fix bugs
 
 ### Launch and installation:
 ```
