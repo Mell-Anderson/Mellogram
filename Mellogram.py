@@ -1,6 +1,9 @@
-from alive_progress.styles import showtime
-from alive_progress import alive_it
-from alive_progress import alive_bar
+try:
+    from alive_progress.styles import showtime
+    from alive_progress import alive_it
+    from alive_progress import alive_bar
+except ImportError:
+    raise ImportError('alive-progress - Not found')
 try:
     import unlink as un
 except ImportError:
@@ -17,8 +20,7 @@ try:
 except ImportError:
     time = None
 try: 
-    import tempfile
-except ImportError:
+    import t
     tempfile = None
 try: 
     import os
