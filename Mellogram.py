@@ -275,7 +275,7 @@ def Shop():
 @logger.catch
 def background():
     if con.ark:
-        un.hook("[Mell]", "Um... how did you get here?")
+        un.hook("[Mell]", loop.PrintLang('33'))
         dog = input("⋗ ")
         un.hook("[Mell]", "It doesn't matter anymore, go away so I don't have to kill!")
         dog = input("⋗ ")
@@ -348,9 +348,9 @@ def underground():
             underground()
         case "2":
             jojo()
-            bot = input(loop.PrintLang('16'))
+            bot = input(loop.PrintLang('16')).lower()
             match bot:
-                case "Buy":
+                case "buy":
                     if con.nMon >= 100:
                         con.nMon -= 100
                         con.nip += con.bitcoinBuy
@@ -361,7 +361,7 @@ def underground():
                         dog = input(loop.PrintLang('17'))
                         jojo()
                         underground()
-                case "Sell":
+                case "sell":
                     if con.nip >= con.bitcoinSell:
                         con.nip -= con.bitcoinSell
                         con.nMon += int(100)
@@ -409,7 +409,7 @@ def video():
             MoneySumsung2 = toFixed(con.MoneySumsung, 8)
             MoneyMicrosoft2 = toFixed(con.MoneyMicrosoft, 8)
             nip2 = toFixed(con.nip, 8)
-            biy = input(f"Video cards are an important thing in mining, the better the easier it is to mine.\n[ 1 ] GeForce GTX 2080 ({nip2}/{MoneyApple2}) \n[ 2 ] GeForce GTX 1060 ({nip2}/{MoneySumsung2}) \n[ 3 ] GeForce GTX 750 ({nip2}/{MoneyMicrosoft2}) \n⋗ ")
+            biy = input(loop.PrintLang('19'))
             break
         except ValueError:
             jojo()
@@ -420,12 +420,12 @@ def video():
                 ast(1)
                 jojo()
                 Apple = "horo"
-                dog = input("You have successfully purchased a video card\n⋗ ")
+                dog = input(loop.PrintLang('20'))
                 jojo()
                 video()
             else:
                 jojo()
-                dog = input("You have less than the required amount.\n⋗ ")
+                dog = input(loop.PrintLang('21'))
                 jojo()
                 video()
     #Samsung
@@ -434,12 +434,12 @@ def video():
                 ast(2)
                 jojo()
                 con.Sumsung = "horo"
-                dog = input("You have successfully purchased a video card\n⋗ ")
+                dog = input(loop.PrintLang('20'))
                 jojo()
                 video()
             else:
                 jojo()
-                dog = input("You have less than the required amount.\n⋗ ")
+                dog = input(loop.PrintLang('21'))
                 jojo()
                 video()
         case "3":
@@ -447,12 +447,12 @@ def video():
                 ast(3)
                 jojo()
                 con.Microsoft = "horo"
-                dog = input("You have successfully purchased a video card\n⋗ ")
+                dog = input(loop.PrintLang('20'))
                 jojo()
                 video()
             else:
                 jojo()
-                dog = input("You have less than the required amount.\n⋗ ")
+                dog = input(loop.PrintLang('21'))
                 jojo()
                 video()
         case _:
@@ -463,21 +463,22 @@ def video():
 def bartter():
     while True:
         try:
-            contract = input("A loan is a responsibility, are you ready to accept it?\n\n[ 1 ] Apple\n[ 2 ] Sumsung\n[ 3 ] Tesla \n\n⋗ ")
+            contract = input(loop.PrintLang('24'))
             break
         except ValueError:
             jojo()
     match contract:
         case "1":
-            bartter = input("Working conditions \n\nTime: 1:00h \nMoney: 500$ \n[Yes/No] ")
+            bartter = input(loop.PrintLang('22'))
             if bartter in con.ANS:
-                bartterConfirmation = input("\nYou are sure? After all, your device will work for the company \n⋗ ")
+                bartterConfirmation = input(loop.PrintLang('27'))
                 if bartter in con.ANS:
                     timeC = 3600
-                    print('Countdown finished.')
+                    print(loop.PrintLang('25'))
                     con.inp = timeC
                     countdown(int(con.inp))
                     con.nMon += 500
+                    dog = input(loop.PrintLang('29'))
                     jojo()
                     bartter()
                 else:
@@ -488,14 +489,15 @@ def bartter():
                 bartter()
             
         case "2":
-            bartter = input("Working conditions \n\nTime: 45m \nMoney: 300$ \n[Yes/No] ")
+            bartter = input(loop.PrintLang('26'))
             if bartter in con.ANS:
-                bartterConfirmation = input("\nYou are sure? After all, your device will work for the company \n⋗ ")
+                bartterConfirmation = input(loop.PrintLang('27'))
                 if bartterConfirmation in con.ANS:
                     timeC = 2700
                     con.inp = timeC
                     countdown(int(con.inp))
                     con.nMon += 300
+                    dog = input(loop.PrintLang('29'))
                     jojo()
                     bartter()
                 else:
@@ -505,15 +507,15 @@ def bartter():
                 jojo()
                 bartter()
         case "3":
-            bartter = input("Working conditions \n\nTime: 25m \nMoney: 150$ \n[Yes/No] ")
+            bartter = input(loop.PrintLang('28'))
             if bartter in con.ANS:
-                bartterConfirmation = input("\nYou are sure? After all, your device will work for the company \n⋗ ")
+                bartterConfirmation = input(loop.PrintLang('27'))
                 if bartterConfirmation in con.ANS:
                     timeC = 1500
                     con.inp = timeC
                     countdown(int(con.inp))
                     con.nMon += 150
-                    dog = input("The contract has been successfully completed, accept your money \n⋗ ")
+                    dog = input(loop.PrintLang('29'))
                     jojo()
                     bartter()
                 else:
@@ -544,7 +546,7 @@ def mone():
             jojo()
             while True:
                 try:
-                    popg = int(input("How many farms do you want to run?(1/20) \n⋗ ")).lower()
+                    popg = int(input(loop.PrintLang('23')))
                     break
                 except ValueError:
                     jojo()
@@ -561,7 +563,7 @@ def mone():
                 jojo()
                 killop()
                 con.nip2 = toFixed(con.nip, 8)
-                print(f'Bitcoin: {con.nip2}')
+                print(loop.PrintLang('30'))
                 time.sleep(1)
                 jojo()
                 killop()
@@ -571,9 +573,9 @@ def mone():
             video()
         #Money
         case "3":
-            print(f'Bitcoin: {con.nip2}')
+            print(loop.PrintLang('30'))
             time.sleep(1)
-            print(f'Money: {con.nMon}')
+            print(loop.PrintLang('31'))
             time.sleep(1)
             jojo()
             killop()
@@ -595,7 +597,7 @@ def mone():
 @logger.catch
 def hopy():
     try:
-        bit = input("Exit? \n[ Yes ] [ No ] \n⋗ ").lower()
+        bit = input(loop.PrintLang('32')).lower()
     except ValueError:
         jojo()
         hopy()

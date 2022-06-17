@@ -26,6 +26,12 @@ class Language:
                     return f'We have prepared information about your equipment for you, keep. \nMachineAK-47: {con.InventoryQuantityMachine}\n\nPassport: {con.InventoryQuantityPassport}\n⋗ '
                 case '16':
                     return f'Bitcoin: \nBuy: 100$ = {con.bitcoinBuy2}\n\nSell: 100$ = {con.bitcoinSell2}\n\n[Buy or Sell]\n⋗ ' 
+                   case '19':
+                       return f'Video cards are an important thing in mining, the better the easier it is to mine.\n[ 1 ] GeForce GTX 2080 ({nip2}/{MoneyApple2}) \n[ 2 ] GeForce GTX 1060 ({nip2}/{MoneySumsung2}) \n[ 3 ] GeForce GTX 750 ({nip2}/{MoneyMicrosoft2}) \n⋗ '
+                case '30':
+                    return f'Bitcoin: {con.nip2}'
+                case '31':
+                    return f'Money: {con.nMon}'
                 case _:
                     return langEN[message_id]
         while self.language == "ru":
@@ -57,6 +63,18 @@ langEN = {
     '15': '>>> Here you can choose the desired currency, exchange or sell it. \n┌─────────────────┐     ┌────────────────────────┐\n│ [ 1 ] Exchanger │     │  [ 2 ] Exchange Rates  │\n└─────────────────┘     └────────────────────────┘\n┌─────────────────┐     ┌────────────────────────┐\n│ [ 4 ] Inventory │     │      [ 3 ] Exit        │\n└─────────────────┘     └────────────────────────┘\n┌────────────────────────────────────────────────┐\n│········[ 5 ] Buying prohibited items···········│\n└────────────────────────────────────────────────┘\n⋗ ',
     '17': 'We did not find the required amount in your account \n⋗ ',
     '18': 'Please enter buy or sell next time\n⋗ '
+    '20':'You have successfully purchased a video card\n⋗ '
+    '21':'You have less than the required amount.\n⋗ '
+    '22':'Working conditions \n\nTime: 1:00h \nMoney: 500$ \n[Yes/No] '
+    '23':'How many farms do you want to run?(1/20) \n⋗ '
+    '24':'A loan is a responsibility, are you ready to accept it?\n\n[ 1 ] Apple\n[ 2 ] Sumsung\n[ 3 ] Tesla \n\n⋗ '
+    '25':'Countdown finished.'
+    '26':'Working conditions \n\nTime: 45m \nMoney: 300$ \n[Yes/No] '
+    '27':'\nYou are sure? After all, your device will work for the company \n⋗ '
+    '28':'Working conditions \n\nTime: 25m \nMoney: 150$ \n[Yes/No] '
+    '29':'The contract has been successfully completed, accept your money \n⋗ '
+    '32':'Exit? \n[ Yes ] [ No ] \n⋗ '
+    '33':'Um... how did you get here?'
 }
 
 langRU = {
@@ -75,69 +93,36 @@ langRU = {
     '18': 'Пожалуйста, введите купить или продать в следующий раз\n⋗ '
 }
 
+def timer(text):
+    tim = 1
+    print(text)
+    time.sleep(tim)
+    print("\033[H\033[J")
+
 def tim(job):
     #Animation
     jojo()
-    print("0%[••••••••••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("5%[#•••••••••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("10%[##•••••••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("15%[###••••••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("21%[####•••••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("26%[#####••••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("31%[######•••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("36%[#######••••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("42%[########•••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("47%[#########••••••••••]")
-    time.sleep(job)
-    jojo()
-    print("52%[##########•••••••••]")
-    time.sleep(job)
-    jojo()
-    print("57%[###########••••••••]")
-    time.sleep(job)
-    jojo()
-    print("63%[############•••••••]")
-    time.sleep(job)
-    jojo()
-    print("68%[#############••••••]")
-    time.sleep(job)
-    jojo()
-    print("73%[##############•••••]")
-    time.sleep(job)
-    jojo()
-    print("78%[###############••••]")
-    time.sleep(job)
-    jojo()
-    print("84%[################•••]")
-    time.sleep(job)
-    jojo()
-    print("89%[#################••]")
-    time.sleep(job)
-    jojo()
-    print("94%[##################•]")
-    time.sleep(job)
-    jojo()
-    print("100%[##################]")
-    time.sleep(job)
-    jojo()
+    timer("0%[••••••••••••••••••••]")
+    timer("5%[#•••••••••••••••••••]")
+    timer("10%[##•••••••••••••••••]")
+    timer("15%[###••••••••••••••••]")
+    timer("21%[####•••••••••••••••]")
+    timer("26%[#####••••••••••••••]")
+    timer("31%[######•••••••••••••]")
+    timer("36%[#######••••••••••••]")
+    timer("42%[########•••••••••••]")
+    timer("47%[#########••••••••••]")
+    timer("52%[##########•••••••••]")
+    timer("57%[###########••••••••]")
+    timer("63%[############•••••••]")
+    timer("68%[#############••••••]")
+    timer("73%[##############•••••]")
+    timer("78%[###############••••]")
+    timer("84%[################•••]")
+    timer("89%[#################••]")
+    timer("94%[##################•]")
+    timer("100%[##################]")
+    
     
 def hook(hko, plot, n = None):
     if n is None:
