@@ -1,8 +1,8 @@
-# This is a game, its version 0.1.8, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.1.9, I'm a novice developer, so don't judge too hard.
 
 ### Innovations:
 
-- Added a small translation.
+- Almost completed translation...
 - Added buttons
 - Fix bugs
 - Loading...
