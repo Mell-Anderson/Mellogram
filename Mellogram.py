@@ -81,6 +81,7 @@ def toFixed(numObj, digits=0):
 def jojo():
     #Emptiness
     print("\033[H\033[J")
+    #os.system('clear')
 
 @logger.catch
 def ast(sos):
@@ -112,49 +113,46 @@ def setting():
     kodin = input(loop.PrintLang('1')).lower()
     if "/kode " in kodin:
         non0 = kodin.replace("/kode ", "")
-        match non0:
-            case "god":
-                con.kod = "God"
-                ast(4)
-                jojo()
-                setting()
-            case "speed":
-                con.kod = "Speed"
-                ast(5)
-                jojo()
-                setting()
+        if "god" == non0:
+            con.kod = "God"
+            ast(4)
+            jojo()
+            setting()
+        elif "speed" == non0:
+            con.kod = "Speed"
+            ast(5)
+            jojo()
+            setting()
     elif "/lang " in kodin:
         non0 = kodin.replace("/lang ", "")
-        match non0:
-            case "en":
-                loop = un.Language("en")
-            case "ru":
-                loop = un.Language("ru")
-    match kodin:
-        case "/sekret":
-            jojo()
-            un.hook("[Mell]", "Have you ever wondered what a question is?")
-            dog = input("⋗ ")
-            un.hook("[Mell]", "In any case, in my opinion, this is a variable with your or someone else's opinion.")
-            dog = input("⋗ ")
-            un.hook("[Mell]", "Choose, you decide or for you?")
-            dog = input("⋗ ")
-            un.hook("[User]", "If you decide that you are not a competitor, then maybe you will leave?")
-            dog = input("⋗ ")
-            un.hook("[Mell]", "I am waiting...")
-            dog = input("⋗ ")
-            un.hook("[Mell]", "Well, if you have not left yet, it means that you either have only your own opinion, or you are not tired of my inner voice yet.")
-            dog = input("⋗ ")
-            un.hook("[Mell]", "So can we get back to reality?")
-            dog = input("⋗ ")
-            jojo()
-            setting()
-        case "exit":
-            jojo()
-            main()
-        case _:
-            jojo()
-            setting()
+        if "en" == non0:
+            loop = un.Language("en")
+        elif "ru" == non0:
+            loop = un.Language("ru")
+    if "/sekret" == kodin:
+        jojo()
+        un.hook("[Mell]", "Have you ever wondered what a question is?")
+        dog = input("⋗ ")
+        un.hook("[Mell]", "In any case, in my opinion, this is a variable with your or someone else's opinion.")
+        dog = input("⋗ ")
+        un.hook("[Mell]", "Choose, you decide or for you?")
+        dog = input("⋗ ")
+        un.hook("[User]", "If you decide that you are not a competitor, then maybe you will leave?")
+        dog = input("⋗ ")
+        un.hook("[Mell]", "I am waiting...")
+        dog = input("⋗ ")
+        un.hook("[Mell]", "Well, if you have not left yet, it means that you either have only your own opinion, or you are not tired of my inner voice yet.")
+        dog = input("⋗ ")
+        un.hook("[Mell]", "So can we get back to reality?")
+        dog = input("⋗ ")
+        jojo()
+        setting()
+    elif "exit" == kodin:
+        jojo()
+        main()
+    else:
+        jojo()
+        setting()
 
 @logger.catch
 def Shop():
@@ -304,25 +302,24 @@ def main():
             jojo()
             main()
     #Start the game
-    match answer:
-        case "1":
-            jojo()
-            killop()
+    if "1" == answer:
+        jojo()
+        killop()
         #Continue game
-        case "2":
-            jojo()
-            main()
+    elif "2" == answer:
+        jojo()
+        main()
         #Settings
-        case "3":
-            jojo()
-            setting()
+    elif "3" == answer:
+        jojo()
+        setting()
         #Output
-        case "4":
-            jojo()
-            hopy()
-        case _:
-            jojo()
-            main()
+    elif "4" == answer:
+        jojo()
+        hopy()
+    else:
+        jojo()
+        main()
 
 #Window #2
 
@@ -342,53 +339,46 @@ def underground():
         except ValueError:
             jojo()
             underground()
-    match vin:
-        case "1":
-            jojo()
-            underground()
-        case "2":
-            jojo()
-            bot = input(loop.PrintLang('16')).lower()
-            match bot:
-                case "buy":
-                    if con.nMon >= 100:
-                        con.nMon -= 100
-                        con.nip += con.bitcoinBuy
-                        jojo()
-                        underground()
-                    else:
-                        jojo()
-                        dog = input(loop.PrintLang('17'))
-                        jojo()
-                        underground()
-                case "sell":
-                    if con.nip >= con.bitcoinSell:
-                        con.nip -= con.bitcoinSell
-                        con.nMon += int(100)
-                        jojo()
-                        underground()
-                    else:
-                        jojo()
-                        dog = input(loop.PrintLang('17'))
-                        jojo()
-                        underground()
-                case _:
-                    jojo()
-                    dog = input()
+    if "1" == vin:
+        jojo()
+        underground()
+    elif "2" == vin:
+        jojo()
+        bot = input(loop.PrintLang('16')).lower()
+        if "buy" == bot:
+            if con.nMon >= 100:
+                con.nMon -= 100
+                con.nip += con.bitcoinBuy
+                jojo()
+                underground()
+            else:
+                jojo()
+                dog = input(loop.PrintLang('17'))
+                jojo()
+                underground()
+        elif "sell" == bot:
+                if con.nip >= con.bitcoinSell:
+                    con.nip -= con.bitcoinSell
+                    con.nMon += int(100)
                     jojo()
                     underground()
-        case "5":
-            jojo()
-            Shop()
-        case "4":
-            jojo()
-            Inventory()
-        case "3":
-            jojo()
-            killop()
-        case _:
-            jojo()
-            underground()
+                else:
+                    jojo()
+                    dog = input(loop.PrintLang('17'))
+                    jojo()
+                    underground()
+    elif "5" == vin:
+        jojo()
+        Shop()
+    elif "4" == vin:
+        jojo()
+        Inventory()
+    elif "3" == vin:
+        jojo()
+        killop()
+    else:
+        jojo()
+        underground()
 
 @logger.catch
 def countdown(num_of_secs):
@@ -414,50 +404,49 @@ def video():
         except ValueError:
             jojo()
             killop()
-    match biy:
-        case "1":
-            if con.nip >= con.MoneyApple and con.Apple == "hor":
-                ast(1)
-                jojo()
-                Apple = "horo"
-                dog = input(loop.PrintLang('20'))
-                jojo()
-                video()
-            else:
-                jojo()
-                dog = input(loop.PrintLang('21'))
-                jojo()
-                video()
+    if "1" == biy:
+        if con.nip >= con.MoneyApple and con.Apple == "hor":
+            ast(1)
+            jojo()
+            Apple = "horo"
+            dog = input(loop.PrintLang('20'))
+            jojo()
+            video()
+        else:
+            jojo()
+            dog = input(loop.PrintLang('21'))
+            jojo()
+            video()
     #Samsung
-        case "2":
-            if con.nip >= con.MoneySumsung and con.Sumsung == "hor":
-                ast(2)
-                jojo()
-                con.Sumsung = "horo"
-                dog = input(loop.PrintLang('20'))
-                jojo()
-                video()
-            else:
-                jojo()
-                dog = input(loop.PrintLang('21'))
-                jojo()
-                video()
-        case "3":
-            if con.nip >= 0.00000026 and con.Microsoft == "hor":
-                ast(3)
-                jojo()
-                con.Microsoft = "horo"
-                dog = input(loop.PrintLang('20'))
-                jojo()
-                video()
-            else:
-                jojo()
-                dog = input(loop.PrintLang('21'))
-                jojo()
-                video()
-        case _:
-             jojo()
-             killop()
+    elif "2" == biy:
+        if con.nip >= con.MoneySumsung and con.Sumsung == "hor":
+            ast(2)
+            jojo()
+            con.Sumsung = "horo"
+            dog = input(loop.PrintLang('20'))
+            jojo()
+            video()
+        else:
+            jojo()
+            dog = input(loop.PrintLang('21'))
+            jojo()
+            video()
+    elif "3" == biy:
+        if con.nip >= 0.00000026 and con.Microsoft == "hor":
+            ast(3)
+            jojo()
+            con.Microsoft = "horo"
+            dog = input(loop.PrintLang('20'))
+            jojo()
+            video()
+        else:
+            jojo()
+            dog = input(loop.PrintLang('21'))
+            jojo()
+            video()
+    else:
+        jojo()
+        killop()
 
 @logger.catch
 def bartter():
@@ -467,69 +456,68 @@ def bartter():
             break
         except ValueError:
             jojo()
-    match contract:
-        case "1":
-            bartter = input(loop.PrintLang('22'))
+    if "1" == contract:
+        bartter = input(loop.PrintLang('22'))
+        if bartter in con.ANS:
+            bartterConfirmation = input(loop.PrintLang('27'))
             if bartter in con.ANS:
-                bartterConfirmation = input(loop.PrintLang('27'))
-                if bartter in con.ANS:
-                    timeC = 3600
-                    print(loop.PrintLang('25'))
-                    con.inp = timeC
-                    countdown(int(con.inp))
-                    con.nMon += 500
-                    dog = input(loop.PrintLang('29'))
-                    jojo()
-                    bartter()
-                else:
-                    jojo()
-                    bartter()
+                timeC = 3600
+                print(loop.PrintLang('25'))
+                con.inp = timeC
+                countdown(int(con.inp))
+                con.nMon += 500
+                dog = input(loop.PrintLang('29'))
+                jojo()
+                bartter()
             else:
                 jojo()
                 bartter()
-            
-        case "2":
-            bartter = input(loop.PrintLang('26'))
-            if bartter in con.ANS:
-                bartterConfirmation = input(loop.PrintLang('27'))
-                if bartterConfirmation in con.ANS:
-                    timeC = 2700
-                    con.inp = timeC
-                    countdown(int(con.inp))
-                    con.nMon += 300
-                    dog = input(loop.PrintLang('29'))
-                    jojo()
-                    bartter()
-                else:
-                    jojo()
-                    bartter()
-            else:
-                jojo()
-                bartter()
-        case "3":
-            bartter = input(loop.PrintLang('28'))
-            if bartter in con.ANS:
-                bartterConfirmation = input(loop.PrintLang('27'))
-                if bartterConfirmation in con.ANS:
-                    timeC = 1500
-                    con.inp = timeC
-                    countdown(int(con.inp))
-                    con.nMon += 150
-                    dog = input(loop.PrintLang('29'))
-                    jojo()
-                    bartter()
-                else:
-                    jojo()
-                    bartter()
-            else:
-                jojo()
-                bartter()
-        case "exit":
-            jojo()
-            killop()
-        case _:
+        else:
             jojo()
             bartter()
+            
+    elif "2" == contract:
+        bartter = input(loop.PrintLang('26'))
+        if bartter in con.ANS:
+            bartterConfirmation = input(loop.PrintLang('27'))
+            if bartterConfirmation in con.ANS:
+                timeC = 2700
+                con.inp = timeC
+                countdown(int(con.inp))
+                con.nMon += 300
+                dog = input(loop.PrintLang('29'))
+                jojo()
+                bartter()
+            else:
+                jojo()
+                bartter()
+        else:
+            jojo()
+            bartter()
+    elif "3" == contract:
+        bartter = input(loop.PrintLang('28'))
+        if bartter in con.ANS:
+            bartterConfirmation = input(loop.PrintLang('27'))
+            if bartterConfirmation in con.ANS:
+                timeC = 1500
+                con.inp = timeC
+                countdown(int(con.inp))
+                con.nMon += 150
+                dog = input(loop.PrintLang('29'))
+                jojo()
+                bartter()
+            else:
+                jojo()
+                bartter()
+        else:
+            jojo()
+            bartter()
+    if "exit" == contract:
+        jojo()
+        killop()
+    else:
+        jojo()
+        bartter()
 
 #Mining
 @logger.catch
@@ -541,57 +529,53 @@ def mone():
         except ValueError:
             jojo()
             killop()
-    match popi:
-        case "1":
-            jojo()
-            while True:
-                try:
-                    popg = int(input(loop.PrintLang('23')))
-                    break
-                except ValueError:
-                    jojo()
-                    killop()
-            #Farm
-            mineMoney = float(0.00000001)
-            if popg in range(21):
-                con.nip +=  (mineMoney*popg)
-                con.bn = con.bn*popg
-                str(un.tim(con.bn))*popg
-                con.bn = con.bn/popg
-                killop()
-            else:
+    if "1" == popi:
+        jojo()
+        while True:
+            try:
+                popg = int(input(loop.PrintLang('23')))
+                break
+            except ValueError:
                 jojo()
                 killop()
-                con.nip2 = toFixed(con.nip, 8)
-                print(loop.PrintLang('30'))
-                time.sleep(1)
-                jojo()
-                killop()
-        #Companies
-        case "2":
-            jojo()
-            video()
-        #Money
-        case "3":
+        #Farm
+        mineMoney = float(0.00000001)
+        if popg in range(21):
+            con.nip +=  (mineMoney*popg)
+            con.bn = con.bn*popg
+            str(un.tim())*popg
+            con.bn = con.bn/popg
+            killop()
+        else:
+            con.nip2 = toFixed(con.nip, 8)
             print(loop.PrintLang('30'))
             time.sleep(1)
-            print(loop.PrintLang('31'))
-            time.sleep(1)
             jojo()
             killop()
-        case "4":
-            jojo()
-            underground()
-        case "5":
-            jojo()
-            bartter()
-            #exit from window 2
-        case "exit" :
-            jojo()
-            main()
-        case _:
-            jojo()
-            killop()
+    #Companies
+    elif "2" == popi:
+        jojo()
+        video()
+        #Money
+    elif "3" == popi:
+        print(loop.PrintLang('30'))
+        time.sleep(1)
+        print(loop.PrintLang('31'))
+        time.sleep(1)
+        jojo()
+        killop()
+    elif "4" == popi:
+        jojo()
+        underground()
+    elif "5" == popi:
+        jojo()
+        bartter()
+    elif "exit" == popi:
+        jojo()
+        main()
+    else:
+        jojo()
+        killop()
 
 #Game Exit Confirmation
 @logger.catch
@@ -607,9 +591,15 @@ def hopy():
         jojo()
         main()
 
+def run(bool=True):
+    if bool is True:
+        with alive_bar(598, ctrl_c=False, title=f'Loading... ') as bar:
+            for i in range(598):
+                time.sleep(0.02)
+                bar()
+        main()
+    else:
+        main()
+
 if __name__ == "__main__":
-    with alive_bar(613, ctrl_c=False, title=f'Loading... ') as bar:
-        for i in range(613):
-            time.sleep(0.02)
-            bar()
-    main()
+    run(False)
