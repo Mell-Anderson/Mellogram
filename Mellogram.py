@@ -49,29 +49,6 @@ except ImportError:
     
 loop = Language(con.language)
 
-"""
-@logger.catch
-def pop():
-    while True:
-        jojo()
-        print('loading... ')
-        for i in "▇ ▆ ▅ ▄ ▃ ▂":
-            time.sleep(0.3)
-            sys.stdout.write(i)
-            sys.stdout.flush()
-        time.sleep(0.5)
-        jojo()
-    else: 
-        main()
-
-@logger.catch
-def is_connected():
-    try:
-        socket.gethostbyaddr('www.google.com')
-        background()
-    except socket.gaierror:
-        pop()
-"""
 @logger.catch
 def toFixed(numObj, digits=0):
     return f"{numObj:.{digits}f}"
@@ -660,9 +637,7 @@ def mone():
     else:
         jojo()
         killop()
-
-assert mone()
-
+        
 @logger.catch
 def hopy():
     try:
