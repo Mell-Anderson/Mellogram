@@ -1,11 +1,10 @@
-# This is a game, its version 0.1.9, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.2.0, I'm a novice developer, so don't judge too hard.
 
 ### Innovations:
 
-- Almost completed translation...
-- Added buttons
+- Completed translation of ru and en
+- Remove buttons
 - Fix bugs
-- Loading...
 
 ### Launch and installation:
 ```
