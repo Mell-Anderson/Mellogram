@@ -1,9 +1,11 @@
-# This is a game, its version 0.2.0, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.1.8, I'm a novice developer, so don't judge too hard.
 
 ### Innovations:
 
-- Completed translation of ru and en
-- Remove buttons
+- Added account login.
+- Logout.
+- Added account registration.
+- Saving the result.
 - Fix bugs
 
 ### Launch and installation:

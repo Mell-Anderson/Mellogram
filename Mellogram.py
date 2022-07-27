@@ -1,63 +1,87 @@
+class FileError(Exception):
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = None
+
+    def __str__(self):
+        if self.message:
+            return f'Game system file not found: {self.message}'
+
+        else:
+            return 'Some configuration file was not found.'
+
 try:
     from alive_progress.styles import showtime
     from alive_progress import alive_it
     from alive_progress import alive_bar
 except ImportError:
     raise ImportError('alive-progress - Not found')
-try:
-    from unlink import *
-except ImportError:
-    raise ImportError("Game system file not found: unlink.py")
+
 try: 
     import datetime
 except ImportError:
     raise ImportError('datetime - Not found')
-    
+
 try:
-    import config as con
+    import modules.config as con
 except ImportError:
     raise FileError("Game system file not found: config.py")
 con.init() 
+
 try: 
     import time
 except ImportError:
     raise ImportError('time - Not found')
+
 try: 
     import tempfile
 except ImportError:
     raise ImportError('tempfile - Not found')
+
 try: 
     import os
 except ImportError: 
     raise ImportError('os - Not found')
+
 try: 
     import sys
 except ImportError: 
     raise ImportError('sys - Not found')
+
 try: 
     import socket
 except ImportError: 
     raise ImportError('socket - Not found')
-try: 
-    import threading
-except ImportError: 
-    raise ImportError('threading - Not found')
+
 try:
     from loguru import logger
 except ImportError:
     raise ImportError('loguru - Not found')
-    
+
+try:
+    from modules.unlink import *
+except ImportError:
+    raise ImportError("Game system file not found: unlink.py")
+
+import ULR.Login as UL
+
+import ULR.Register as UR
+
+import ULR.Profile as UP
+
 loop = Language(con.language)
 
+"""
 @logger.catch
 def toFixed(numObj, digits=0):
     return f"{numObj:.{digits}f}"
-            
+"""
 
 @logger.catch
 def jojo():
     print("\033[H\033[J")
-    #os.system('clear')
 
 @logger.catch
 def ast(sos):
@@ -116,47 +140,38 @@ def setting():
         Local.follower("[Mell]", loop.PrintLang('40'))
         jojo()
         setting()
-    elif "exit" == kodin:
-        jojo()
-        main()
     else:
         jojo()
-        setting()
+        main()
 
 @logger.catch
 def Shop():
     print(loop.PrintLang('3'))
-    while True:
-        try:
-            ShopMainPrinter = input(loop.PrintLang("4")).lower()
-            break
-        except ValueError:
-            jojo()
-            Shop()
-        except KeyboardInterrupt:
-            exit()
+    try:
+        ShopMainPrinter = input(loop.PrintLang("4")).lower()
+    except ValueError:
+        jojo()
+        Shop()
+    except KeyboardInterrupt:
+        exit()
     if ShopMainPrinter == "3":
             jojo()
             killop()
-            while True:
-                try:
-                    PurchaseRequest = str(input(loop.PrintLang("5")))
-                    break
-                except ValueError:
-                    jojo()
-                    Shop()
-                except KeyboardInterrupt:
-                    exit()
-    elif ShopMainPrinter == "1" and PurchaseRequest == "Buy":
-        while True:
             try:
-                con.QuantityBuy = int(input(loop.PrintLang('6'))).lower()
-                break
+                PurchaseRequest = str(input(loop.PrintLang("5")))
             except ValueError:
                 jojo()
                 Shop()
             except KeyboardInterrupt:
                 exit()
+    elif ShopMainPrinter == "1" and PurchaseRequest == "Buy":
+        try:
+            con.QuantityBuy = int(input(loop.PrintLang('6'))).lower()
+        except ValueError:
+            jojo()
+            Shop()
+        except KeyboardInterrupt:
+            exit()
         if con.Machine > 0 and con.Mon >= con.MachineBuy:
             con.Machine -= int(con.QuantityBuy)
             Machine2 = int(con.Machine)
@@ -202,7 +217,8 @@ def Shop():
         else:
             jojo()
             try:
-                dog = input(loop.PrintLang('10'))
+                print(loop.PrintLang('10'))
+                dog = input('\n> ')
             except KeyboardInterrupt:
                 exit()
             jojo()
@@ -224,7 +240,8 @@ def Shop():
             con.InventoryQuantityPassport += con.QuantityBuy
             jojo()
             try:
-                dog = input(loop.PrintLang('07'))
+                print(loop.PrintLang('07'))
+                dog = input(f'[{con.UserName}]\n> ')
             except KeyboardInterrupt:
                 exit()
             jojo()
@@ -255,7 +272,8 @@ def Shop():
             con.InventoryQuantityPassport -= con.QuantitySell
             jojo()
             try:
-                dog = input(loop.PrintLang('09'))
+                print(loop.PrintLang('09'))
+                dog = input('\n> ')
             except KeyboardInterrupt:
                 exit()
             jojo()
@@ -315,8 +333,11 @@ def main():
         setting()
     elif "4" == answer:
         jojo()
-        hopy()
+        UP.profile()
     elif "5" == answer:
+        jojo()
+        hopy()
+    elif "6" == answer:
         def forgot(func):     
             return func() 
         try:
@@ -657,7 +678,7 @@ def hopy():
 def run(bools=True):
     if bools is True:
         try:
-            with alive_bar(692, ctrl_c=True, title=f'Loading... ') as bar:
+            with alive_bar(674, ctrl_c=True, title=f'Loading... ') as bar:
                 for i in range(692):
                     time.sleep(0.02)
                     bar()
