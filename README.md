@@ -1,4 +1,4 @@
-# This is a game, its version 0.1.8, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.2.1, I'm a novice developer, so don't judge too hard.
 
 ### Innovations:
 
@@ -16,6 +16,6 @@
 
  python -m pip install -r requirements.txt 
 
- python Mellogram
+ python Mellogram.py
 ```
 #God #Speed
