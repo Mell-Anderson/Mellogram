@@ -12,9 +12,7 @@
 ```
  git clone https://github.com/Mell-Anderson/Mellogram/
 
- cd Mellogram
-
- python -m pip install -r requirements.txt 
+ cd Mellogram 
 
  python Mellogram.py
 ```
