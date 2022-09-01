@@ -12,7 +12,7 @@
 ```
  git clone https://github.com/Mell-Anderson/Mellogram/
 
- cd Mellogram 
+ cd Mellogram-main or cd Mellogram
 
  python Mellogram.py
 ```
