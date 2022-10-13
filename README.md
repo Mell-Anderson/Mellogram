@@ -1,12 +1,13 @@
-# This is a game, its version 0.2.1, I'm a novice developer, so don't judge too hard.
+# This is a game, its version 0.2.2, I'm a novice developer, so don't judge too hard.
 
 ### Innovations:
 
-- Added account login.
-- Logout.
-- Added account registration.
-- Saving the result.
-- Fix bugs
+- Removed account login.
+- Removed logout.
+- Removed account registration.
+- Removed saving the result.
+- Cleaned up code.
+- Fix bugs.
 
 ### Launch and installation:
 ```
@@ -14,6 +15,6 @@
 
  cd Mellogram-main or cd Mellogram
 
- python Mellogram.py
+ python Mellogram.py (x2)
 ```
 #God #Speed
