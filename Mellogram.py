@@ -660,4 +660,4 @@ def run(bools=True) -> None:
         main()
 
 if __name__ == "__main__":
-    run(False)
+    run(True)
