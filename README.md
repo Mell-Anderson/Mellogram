@@ -7,6 +7,8 @@
 - Removed account registration.
 - Removed saving the result.
 - Cleaned up code.
+- Change the way you change the language.
+- Log work has begun.
 - Fix bugs.
 
 ### Launch and installation:
