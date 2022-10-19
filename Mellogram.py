@@ -1,44 +1,53 @@
-import datetime
+import sys
+
+sys.setswitchinterval(2000)
+
 import os
 import time
-import sys
-import socket
 import os.path
-
-try:
-    from alive_progress.styles import showtime
-    from alive_progress import alive_it
-    from alive_progress import alive_bar
-except ImportError:
-    os.system('pip install alive-progress')
 
 try:
     from loguru import logger
 except ImportError:
     os.system('pip install loguru')
 
+logger.add("debug.log",
+           format="{time} {level} {message}",
+           level="DEBUG",
+           rotation="1 MB")
+
+try:
+    from alive_progress import alive_bar
+except ImportError:
+    logger.error("Module live_bar not found")
+    os.system('pip install alive-progress')
+
 try:
     import modules.config as con
 except ImportError:
+    logger.error("Module config not found")
     raise ImportError("Game system file not found: config.py")
-con.init() 
+con.init()
 
 try:
     from modules.unlink import *
 except ImportError:
+    logger.error("Module unlink not found")
     raise ImportError("Game system file not found: unlink.py")
-
 
 loop = Language(con.language)
 
+
 #Clearing the Dialog Box
 @logger.catch
-def jojo() -> None:
+def clear_text() -> None:
     print("\033[H\033[J")
+
 
 #Resource allocation
 @logger.catch
-def ast(sos:int) -> None:
+def ast(sos: int) -> None:
+    logger.info("Run function ast")
     if sos == 1:
         con.Nip -= con.MONEYAPPLE
         con.Bn = 5
@@ -57,35 +66,59 @@ def ast(sos:int) -> None:
     elif sos == 5:
         con.Bn = 0.1
         con.MineMoney = 10000
-   
+    logger.info("End of ast function")
+
+
 #Game settings
 @logger.catch
 def setting() -> None:
+    """
+    The function is used to configure game settings:
+    - Cheat codes.
+    - Language pack changes.
+    """
     global loop
+    logger.info("Run function setting")
     try:
         kodin = input(loop.PrintLang('1')).lower()
+    except ValueError:
+        clear_text()
+        setting()
     except KeyboardInterrupt:
-        exit()
+        clear_text()
+        hopy()
     if "/kode " in kodin:
-        non0 = kodin.replace("/kode ", "")
-        if "god" == non0:
+        non0 = kodin.split(" ")
+        if con.__kode_list[0] == non0[1]:
             con.Kod = "God"
+            logger.info("Cheat code changed to God")
             ast(4)
-            jojo()
+            clear_text()
             setting()
-        elif "speed" == non0:
+        elif con.__kode_list[1] == non0[1]:
             con.Kod = "Speed"
+            logger.info("Cheat code changed to Speed")
             ast(5)
-            jojo()
+            clear_text()
             setting()
     elif "/lang " in kodin:
-        non0 = kodin.replace("/lang ", "")
-        if "en" == non0:
-            loop = Language("en")
-        elif "ru" == non0:
-            loop = Language("ru")
+        non0 = kodin.split(" ")
+        if "list" == non0[1]:
+            clear_text()
+            num = 0
+            for i in con.language_list:
+                num += 1
+                print(f"{num}. {i}")
+            _lang = int(input("> "))
+            if _lang <= len(con.language_list) and _lang > -1:
+                lang_varible = con.language_list[_lang - 1]
+                loop = Language(lang_varible)
+                logger.info(f"Language changed to {lang_varible}")
+            clear_text()
+            setting()
     if "/sekret" == kodin:
-        jojo()
+        logger.info("The secret has been discovered")
+        clear_text()
         Local.follower("[Mell]", loop.PrintLang('34'))
         Local.follower("[Mell]", loop.PrintLang('35'))
         Local.follower("[Mell]", loop.PrintLang('36'))
@@ -93,210 +126,212 @@ def setting() -> None:
         Local.follower("[Mell]", loop.PrintLang('38'))
         Local.follower("[Mell]", loop.PrintLang('39'))
         Local.follower("[Mell]", loop.PrintLang('40'))
-        jojo()
+        clear_text()
         setting()
     else:
-        jojo()
+        clear_text()
         main()
+    logger.info("End of setting function")
+
 
 #Play store
 @logger.catch
-def Shop() -> None:
+def shop() -> None:
+    """
+    The function serves as the sale of in-game items and services.
+    """
+    logger.info("Run function shop")
     print(loop.PrintLang('3'))
     try:
         ShopMainPrinter = input(loop.PrintLang("4")).lower()
     except ValueError:
-        jojo()
-        Shop()
+        clear_text()
+        shop()
     except KeyboardInterrupt:
-        exit()
+        hopy()
     if ShopMainPrinter == "3":
-            jojo()
-            killop()
-            try:
-                PurchaseRequest = str(input(loop.PrintLang("5")))
-            except ValueError:
-                jojo()
-                Shop()
-            except KeyboardInterrupt:
-                exit()
+        clear_text()
+        killop()
+        try:
+            PurchaseRequest = str(input(loop.PrintLang("5")))
+        except ValueError:
+            clear_text()
+            shop()
+        except KeyboardInterrupt:
+            hopy()
     elif ShopMainPrinter == "1" and PurchaseRequest == "Buy":
         try:
             con.QuantityBuy = int(input(loop.PrintLang('6'))).lower()
         except ValueError:
-            jojo()
-            Shop()
+            clear_text()
+            shop()
         except KeyboardInterrupt:
-            exit()
+            hopy()
         if con.Machine > 0 and con.Mon >= con.MachineBuy:
             con.Machine -= int(con.QuantityBuy)
             Machine2 = int(con.Machine)
             con.nMon -= int(con.MachineBuy) * int(con.QuantityBuy)
             con.InventoryQuantityMachine += con.QuantityBuy
-            jojo()
+            clear_text()
             try:
-                dog = input(loop.PrintLang('7'))
+                input(loop.PrintLang('7'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
+                hopy()
+            clear_text()
+            shop()
         else:
             print(loop.PrintLang('8'))
             try:
-                dog = input("⋗ ")
+                input("⋗ ")
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
+                hopy()
+            clear_text()
+            shop()
     elif ShopMainPrinter == "1" and PurchaseRequest == "Sell":
         while True:
             try:
                 con.QuantitySell = input(loop.PrintLang('6')).lower()
                 break
             except ValueError:
-                jojo()
-                Shop()
+                clear_text()
+                shop()
             except KeyboardInterrupt:
-                exit()
-        if int(con.InventoryQuantityMachine) >= int(con.QuantitySell) and con.QuantityBuy < con.Machine:
+                hopy()
+        if int(con.InventoryQuantityMachine) >= int(
+                con.QuantitySell) and con.QuantityBuy < con.Machine:
             con.Machine += int(con.QuantitySell)
             con.Machine2 = int(con.Machine)
             con.Mon += int(con.MachineBuy) * int(con.QuantityBuy)
             con.InventoryQuantityMachine -= con.QuantityBuy
-            jojo()
+            clear_text()
             try:
-                dog = input(loop.PrintLang('9'))
+                input(loop.PrintLang('9'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
+                hopy()
+            clear_text()
+            shop()
         else:
-            jojo()
+            clear_text()
             try:
                 print(loop.PrintLang('10'))
-                dog = input('\n> ')
+                input('\n> ')
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
-    if ShopMainPrinter ==  "2" and PurchaseRequest == "Buy":
+                hopy()
+            clear_text()
+            shop()
+    if ShopMainPrinter == "2" and PurchaseRequest == "Buy":
         while True:
             try:
                 con.QuantityBuy = int(input(loop.PrintLang('06')))
                 break
             except ValueError:
-                jojo()
-                Shop()
+                clear_text()
+                shop()
             except KeyboardInterrupt:
-                exit()
+                hopy()
         if con.Passport > 0 and con.nMon >= con.PassportBuy and con.QuantityBuy < con.Passport:
             con.Passport -= int(con.QuantityBuy)
             con.Passport2 = int(con.Passport)
             con.nMon -= int(con.PassportBuy) * int(con.QuantityBuy)
             con.InventoryQuantityPassport += con.QuantityBuy
-            jojo()
+            clear_text()
             try:
                 print(loop.PrintLang('07'))
-                dog = input(f'[{con.UserName}]\n> ')
+                input(f'[{con.UserName}]\n> ')
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
+                hopy()
+            clear_text()
+            shop()
         else:
-            jojo()
+            clear_text()
             print(loop.PrintLang('08'))
             try:
-                dog = input("⋗ ")
+                input("⋗ ")
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
+                hopy()
+            clear_text()
+            shop()
     elif ShopMainPrinter == "2" and PurchaseRequest == "Sell":
         while True:
             try:
                 con.QuantitySell = input(loop.PrintLang('07'))
                 break
             except ValueError:
-                jojo()
-                Shop()
+                clear_text()
+                shop()
             except KeyboardInterrupt:
-                exit()
+                hopy()
         if int(con.InventoryQuantityPassport) >= int(con.QuantitySell):
             con.Passport += int(con.QuantitySell)
             con.Passport2 = int(con.Passport)
             con.nMon += int(con.PassportSell) * int(con.QuantitySell)
             con.InventoryQuantityPassport -= con.QuantitySell
-            jojo()
+            clear_text()
             try:
                 print(loop.PrintLang('09'))
-                dog = input('\n> ')
+                input('\n> ')
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
+                hopy()
+            clear_text()
+            shop()
         else:
-            jojo()
+            clear_text()
             try:
-                dog = input(loop.PrintLang('11'))
+                input(loop.PrintLang('11'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
-            Shop()
+                hopy()
+            clear_text()
+            shop()
     else:
-        jojo()
-        Shop()
-
-#Text object
-@logger.catch
-def background() -> None:
-    if con.ark:
-        un.follower("[Mell]", loop.PrintLang('33'))
-        un.follower("[Mell]", "It doesn't matter anymore, go away so I don't have to kill!")
-        un.follower("[Mell]", "Well, if you don't want to leave, I'll help you with that.")
-        un.follower("[User]", "I lost my harvest, I started to fall")
-        main()
-    else:
-        main()
+        clear_text()
+        shop()
+    logger.info("End of setting function")
 
 #Game inventory (for game items)
 @logger.catch
 def Inventory() -> None:
+    logger.info("Run function Inventory")
     try:
-        dog = input(loop.PrintLang('13'))
+        input(loop.PrintLang('13'))
     except KeyboardInterrupt:
-        exit()
+        hopy()
     underground()
+    logger.info("End of inventory function")
+
 
 #Main initial entry (menu)
 @logger.catch
 def main() -> None:
-    jojo()
+    logger.info("Run function main")
+    clear_text()
     print(loop.PrintLang('12'))
     while True:
         try:
             answer = input("⋗ ")
             break
         except ValueError:
-            jojo()
+            clear_text()
             main()
         except KeyboardInterrupt:
-            exit()
+            hopy()
     if "1" == answer:
-        jojo()
+        clear_text()
         killop()
     elif "2" == answer:
-        jojo()
+        clear_text()
         setting()
     elif "3" == answer:
-        jojo()
+        clear_text()
         hopy()
     elif "4" == answer:
-        def forgot(func):     
-            return func() 
+
+        def forgot(func):
+            return func()
+
         try:
             x = input("Password: ")
         except KeyboardInterrupt:
-            exit()
+            hopy()
         if x == "Mell":
             while True:
                 if x == "exit":
@@ -304,89 +339,96 @@ def main() -> None:
                 try:
                     m = input("> ")
                 except KeyboardInterrupt:
-                    exit()
+                    hopy()
                 forgot(eval(m))
         else:
             main()
     else:
-        jojo()
+        clear_text()
         main()
+    logger.info("End of main function")
+
 
 #Function extension
 @logger.catch
 def killop() -> None:
-    jojo()
+    logger.info("Run function killop")
+    clear_text()
     print(loop.PrintLang('14'))
     mone()
+
 
 #Underground text function
 @logger.catch
 def underground() -> None:
+    logger.info("Run function underground")
     while True:
         try:
             vin = input(loop.PrintLang('15'))
             break
         except ValueError:
-            jojo()
+            clear_text()
             underground()
         except KeyboardInterrupt:
-            exit()
+            hopy()
     if "1" == vin:
-        jojo()
+        clear_text()
         underground()
     elif "2" == vin:
-        jojo()
+        clear_text()
         try:
             bot = input(loop.PrintLang('16')).lower()
         except KeyboardInterrupt:
-            exit()
+            hopy()
         if "buy" == bot:
             if con.Mon >= 100:
                 con.Mon -= 100
                 con.Nip += con.BitcoinBuy
-                jojo()
+                clear_text()
                 underground()
             else:
-                jojo()
+                clear_text()
                 try:
-                    dog = input(loop.PrintLang('17'))
+                    input(loop.PrintLang('17'))
                 except KeyboardInterrupt:
-                    exit()
-                jojo()
+                    hopy()
+                clear_text()
                 underground()
         elif "sell" == bot:
-                if con.Nip >= con.BitcoinSell:
-                    con.Nip -= con.BitcoinSell
-                    con.Mon += int(100)
-                    jojo()
-                    underground()
-                else:
-                    jojo()
-                    try:
-                        dog = input(loop.PrintLang('17'))
-                    except KeyboardInterrupt:
-                        exit()
-                    jojo()
-                    underground()
+            if con.Nip >= con.BitcoinSell:
+                con.Nip -= con.BitcoinSell
+                con.Mon += int(100)
+                clear_text()
+                underground()
+            else:
+                clear_text()
+                try:
+                    input(loop.PrintLang('17'))
+                except KeyboardInterrupt:
+                    hopy()
+                clear_text()
+                underground()
         else:
-            jojo()
+            clear_text()
             underground()
     elif "3" == vin:
-        jojo()
-        Shop()
+        clear_text()
+        shop()
     elif "4" == vin:
-        jojo()
+        clear_text()
         Inventory()
     elif "5" == vin:
-        jojo()
+        clear_text()
         killop()
     else:
-        jojo()
+        clear_text()
         underground()
+
 
 #Timer
 @logger.catch
-def countdown(num_of_secs:int) -> None:
+def countdown(num_of_secs: int) -> None:
+    logger.info("Run function countdown")
     while num_of_secs:
         m, s = divmod(num_of_secs, 60)
         min_sec_format = '{:02d}:{:02d}'.format(m, s)
@@ -394,259 +436,270 @@ def countdown(num_of_secs:int) -> None:
         try:
             time.sleep(1)
         except KeyboardInterrupt:
-            exit()
+            hopy()
         num_of_secs -= 1
+
 
 #Store video adapter
 @logger.catch
 def video() -> None:
+    logger.info("Run function video")
     while True:
         try:
             biy = input(loop.PrintLang('19'))
             break
         except ValueError:
-            jojo()
+            clear_text()
             killop()
         except KeyboardInterrupt:
-            exit()
+            hopy()
     if "1" == biy:
         if con.Nip >= con.MoneyApple and con.Apple == "hor":
             ast(1)
-            jojo()
+            clear_text()
             Apple = "horo"
             try:
-                dog = input(loop.PrintLang('20'))
+                input(loop.PrintLang('20'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
+                hopy()
+            clear_text()
             video()
         else:
-            jojo()
+            clear_text()
             try:
-                dog = input(loop.PrintLang('21'))
+                input(loop.PrintLang('21'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
+                hopy()
+            clear_text()
             video()
     elif "2" == biy:
         if con.Nip >= con.MoneySumsung and con.Sumsung == "hor":
             ast(2)
-            jojo()
+            clear_text()
             con.Sumsung = "horo"
             try:
-                dog = input(loop.PrintLang('20'))
+                input(loop.PrintLang('20'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
+                hopy()
+            clear_text()
             video()
         else:
-            jojo()
+            clear_text()
             try:
-                dog = input(loop.PrintLang('21'))
+                input(loop.PrintLang('21'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
+                hopy()
+            clear_text()
             video()
     elif "3" == biy:
         if con.Nip >= 0.00000026 and con.Microsoft == "hor":
             ast(3)
-            jojo()
+            clear_text()
             con.Microsoft = "horo"
             try:
-                dog = input(loop.PrintLang('20'))
+                input(loop.PrintLang('20'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
+                hopy()
+            clear_text()
             video()
         else:
-            jojo()
+            clear_text()
             try:
-                dog = input(loop.PrintLang('21'))
+                input(loop.PrintLang('21'))
             except KeyboardInterrupt:
-                exit()
-            jojo()
+                hopy()
+            clear_text()
             video()
     else:
-        jojo()
+        clear_text()
         killop()
+
 
 #Barter - exchanging time for money
 @logger.catch
 def bartter() -> None:
+    logger.info("Run function bartter")
     while True:
         try:
             contract = input(loop.PrintLang('24'))
             break
         except ValueError:
-            jojo()
+            clear_text()
             bartter()
         except KeyboardInterrupt:
-            exit()
+            hopy()
     if "1" == contract:
         try:
             barter = input(loop.PrintLang('22'))
         except KeyboardInterrupt:
-            exit()
+            hopy()
         if barter in con.ANS:
             try:
                 bartterConfirmation = input(loop.PrintLang('27'))
             except KeyboardInterrupt:
-                exit()
+                hopy()
             if bartterConfirmation in con.ANS:
                 print(loop.PrintLang('25'))
                 con.Inp = 3600
                 countdown(int(con.Inp))
                 con.Mon += 500
                 try:
-                    dog = input(loop.PrintLang('29'))
+                    input(loop.PrintLang('29'))
                 except KeyboardInterrupt:
-                    exit()
-                jojo()
+                    hopy()
+                clear_text()
                 bartter()
             else:
-                jojo()
+                clear_text()
                 bartter()
         else:
-            jojo()
+            clear_text()
             bartter()
-            
+
     elif "2" == contract:
         try:
             barter = input(loop.PrintLang('26'))
         except KeyboardInterrupt:
-            exit()
+            hopy()
         if barter in con.ANS:
             try:
                 bartterConfirmation = input(loop.PrintLang('27'))
             except KeyboardInterrupt:
-                exit()
+                hopy()
             if bartterConfirmation in con.ANS:
                 con.Inp = 2700
                 countdown(int(con.Inp))
                 con.Mon += 300
                 try:
-                    dog = input(loop.PrintLang('29'))
+                    input(loop.PrintLang('29'))
                 except KeyboardInterrupt:
-                    exit()
-                jojo()
+                    hopy()
+                clear_text()
                 bartter()
             else:
-                jojo()
+                clear_text()
                 bartter()
         else:
-            jojo()
+            clear_text()
             bartter()
     elif "3" == contract:
         try:
             barter = input(loop.PrintLang('28'))
         except KeyboardInterrupt:
-            exit()
+            hopy()
         if barter in con.ANS:
             try:
                 bartterConfirmation = input(loop.PrintLang('27'))
             except KeyboardInterrupt:
-                exit()
+                hopy()
             if bartterConfirmation in con.ANS:
                 con.Inp = 1500
                 countdown(int(con.Inp))
                 con.Mon += 150
                 try:
-                    dog = input(loop.PrintLang('29'))
+                    input(loop.PrintLang('29'))
                 except KeyboardInterrupt:
-                    exit()
-                jojo()
+                    hopy()
+                clear_text()
                 bartter()
             else:
-                jojo()
+                clear_text()
                 bartter()
         else:
-            jojo()
+            clear_text()
             bartter()
     else:
-        jojo()
+        clear_text()
         bartter()
     if "exit" == contract:
-        jojo()
+        clear_text()
         killop()
     else:
-        jojo()
+        clear_text()
         bartter()
+
 
 #Function of the 2nd most important value
 @logger.catch
 def mone() -> None:
+    logger.info("Run function mone")
     while True:
         try:
             popi = str(input("⋗ ")).lower()
             break
         except ValueError:
-            jojo()
+            clear_text()
             killop()
         except KeyboardInterrupt:
-            exit()
+            hopy()
     if "1" == popi:
-        jojo()
+        clear_text()
         while True:
             try:
                 popg = int(input(loop.PrintLang('23')))
                 break
             except ValueError:
-                jojo()
+                clear_text()
                 killop()
             except KeyboardInterrupt:
-                exit()
+                hopy()
         if popg in range(1, 21):
-            con.Mon +=  (con.MineMoney*popg)
+            con.Mon += (con.MineMoney * popg)
             con.Bn *= popg
-            str(tim())*popg
+            str(tim()) * popg
             con.Bn /= popg
             killop()
         else:
-            jojo()
+            clear_text()
             killop()
     elif "2" == popi:
-        jojo()
+        clear_text()
         video()
     elif "3" == popi:
         print(loop.PrintLang('30'))
         time.sleep(1)
         print(loop.PrintLang('31'))
         time.sleep(1)
-        jojo()
+        clear_text()
         killop()
     elif "4" == popi:
-        jojo()
+        clear_text()
         underground()
     elif "5" == popi:
-        jojo()
+        clear_text()
         bartter()
     elif "exit" == popi:
-        jojo()
+        clear_text()
         main()
     else:
-        jojo()
+        clear_text()
         killop()
-        
- #Trying to organize an exit
+
+
+#Trying to organize an exit
+
 
 @logger.catch
 def hopy() -> None:
+    logger.info("Run function hopy")
     try:
         try:
             bit = input(loop.PrintLang('32')).lower()
         except KeyboardInterrupt:
-            exit()
+            hopy()
     except ValueError:
-        jojo()
+        clear_text()
         hopy()
     if bit in con.ANS:
         quit()
     else:
-        jojo()
+        clear_text()
         main()
+
 
 #Something like a download...
 def run(bools=True) -> None:
+    logger.info("Run function run")
     if bools is True:
         try:
             with alive_bar(674, ctrl_c=True, title=f'Loading... ') as bar:
@@ -655,9 +708,10 @@ def run(bools=True) -> None:
                     bar()
             main()
         except KeyboardInterrupt:
-            exit()
+            hopy()
     else:
         main()
 
+
 if __name__ == "__main__":
-    run(True)
+    run(con.v3)
