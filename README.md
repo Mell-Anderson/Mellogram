@@ -15,6 +15,6 @@
 
  cd Mellogram-main or cd Mellogram
 
- python Mellogram.py (x2)
+ python Mellogram.py (x2) ```If there are no dependencies.```
 ```
 #God #Speed
